@@ -18,6 +18,18 @@ class ArticlesController extends Controller
        return view('articles.index', compact('articles'));
     }
 
+    public function search(Request $request)
+    {
+       $articles=Articles::whereNull('deleted_at')
+                            ->where(function ($q) use ($request){
+                                if($request->key){
+                                    $q->Where('title', 'like', "%{$request->key}%")
+                                    ->orWhere('description', 'like', "%{$request->key}%");
+                                }
+                            })->get();
+       return view('articles.index', compact('articles'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,9 +58,9 @@ class ArticlesController extends Controller
      * @param  \App\Models\Models\Articles  $articles
      * @return \Illuminate\Http\Response
      */
-    public function show(Articles $articles)
+    public function show(Articles $article)
     {
-        //
+        return view('articles.view', compact('article'));
     }
 
     /**

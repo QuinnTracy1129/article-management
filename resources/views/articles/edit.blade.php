@@ -7,11 +7,11 @@
             <div class="card">
                 <div class="card-header">
                 <a href="{{ URL::previous() }}" class="btn btn-outline-primary" > <- Back</a> &nbsp;
-               Edit <b> {{ $article[0]->title }} </b> Article
+               Edit <b> {{ $article->title }} </b> Article
                 </div>
 
                 <div class="card-body">
-                    <form  action="{{ route('articles.update', $article[0]->id) }}">
+                    <form  action="{{ route('articles.update', $article->id) }}">
                         @csrf
                         @method('GET')
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
@@ -20,7 +20,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="title" value="{{ $article[0]->title }}" required autofocus>
+                                <input id="title" type="text" class="form-control" name="title" value="{{ $article->title }}" required autofocus>
                             </div>
                         </div>
 
@@ -28,7 +28,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="text-area" class="form-control " name="description" value="{{ $article[0]->description }}" required autocomplete="email">
+                                <input id="description" type="text-area" class="form-control " name="description" value="{{ $article->description }}" required autocomplete="email">
                             </div>
                         </div>
 
